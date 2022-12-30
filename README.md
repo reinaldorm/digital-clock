@@ -2,7 +2,7 @@
 
 Digital Clock made up with **CSS** and **TypeScript**. 
 
-Most of the project are built in **CSS**, **TypeScript** is only used to get and return the date do to the **HTML** Document.
+Most of the [project](https://reinaldorm.github.io/digital-clock/) are built in **CSS**, **TypeScript** is only used to get and return the date do to the **HTML** Document.
 
 ## Preview
 

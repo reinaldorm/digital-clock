@@ -17,18 +17,18 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-
-  background: #111;
-  border-radius: 0.25rem;
   overflow: hidden;
 
+  background: #111;
+  border-radius: 0.75rem;
   cursor: pointer;
 
-  transform-origin: center;
-  transform-style: preserve-3d;
-  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
   translate: -50% -50% 0px;
-  transition: transform 0.2s ease-out 0s;
+  transition: scale 0.2 s cubic-bezier(1, 0, 0.8, 1.6) 0s;
+}
+
+.clock.paused {
+  scale: 90%;
 }
 
 .clock::before {
@@ -40,12 +40,13 @@ body {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0);
-  z-index: 10;
+  z-index: 4;
   transition: all 0.2s ease-in-out 0s;
+  pointer-events: none;
 }
 
 .clock.paused::before {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .clock-timer {
@@ -55,6 +56,7 @@ body {
   position: relative;
   z-index: 2;
   background: #111;
+  border-radius: 0.5rem;
 }
 
 .clock-border {
@@ -67,28 +69,20 @@ body {
   background-color: #4158d0;
   background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
   animation: border-hue 10s ease 0s infinite normal both;
-  box-shadow: 0px 0px 8px 4px #00f;
-}
-
-@keyframes border-hue {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
 }
 
 .time-sep {
   font: 700 6rem Arial;
   color: #fff;
   pointer-events: none;
+  padding: 2rem 0rem;
 }
 
 .time-block {
   display: flex;
   gap: 0.5rem;
-  pointer-events: none;
+  padding: 2rem;
+  background: transparent;
 }
 
 .time-line {
@@ -104,7 +98,7 @@ body {
 }
 
 .time-number {
-  font: 700 6rem Arial;
+  font: 700 6rem 'jetbrains mono', 'monolisa', monospace;
   opacity: 0.1;
   scale: 75%;
 }
@@ -113,4 +107,30 @@ body {
   opacity: 1;
   scale: 100%;
   transform-origin: center;
+}
+
+.pause-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  translate: -50% -50% 0px;
+  font: 700 2rem 'jetbrains mono', 'monolisa', monospace;
+  z-index: 5;
+  color: #fff;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.clock.paused .pause-msg {
+  display: block;
+}
+
+@keyframes border-hue {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
